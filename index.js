@@ -16,6 +16,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
      try{
         await client.connect();
         const productCollection =client.db('car_tools').collection('products');
+        const orderCollection = client.db('car_tools').collection('order');
+        app.get('/order', async(req,res)=>{
+          const client = req.query.email;
+          const query = {email : email};
+          const orders = await orderCollection.find(query).toArray();
+        })
         app.get('/products', async(req,res)=>{
             const query = {}
             const cursor = productCollection.find(query);
