@@ -21,6 +21,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
           const client = req.query.email;
           const query = {email : email};
           const orders = await orderCollection.find(query).toArray();
+          res.send(orders);
         })
         app.get('/products', async(req,res)=>{
             const query = {}
@@ -43,5 +44,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(` app listening  ${port}`)
 })
