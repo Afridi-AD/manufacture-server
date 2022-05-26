@@ -40,7 +40,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
           const user = req.body;
           const filter ={email : email};
           const options = {upsert : true};
-          const updateDoc = { $set : user}
+          const updateDoc = {
+            $set : user, 
+        };
+        const result = await userCollection.updateOne(filter,updateDoc,options)
         })
         app.post('/orders',async(req,res)=>{
           const order = req.body;
