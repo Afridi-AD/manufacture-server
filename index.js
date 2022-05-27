@@ -62,7 +62,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
         });
 
-        app.get('/user', async(req,res)=>{
+        app.get('/user',verifyJwt, async(req,res)=>{
           const users = await userCollection.find().toArray();
           res.send(users);
 
